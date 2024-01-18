@@ -27,5 +27,9 @@ model orders {
   transshipment Int
   total Int 
   drop Boolean
+  description String
+  aditional String
+  quantity Int
   products products @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  
 }

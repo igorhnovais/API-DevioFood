@@ -12,6 +12,7 @@ datasource db {
 
 model products {
   id Int @id @default(autoincrement())
+  image String
   name String @db.VarChar(50)
   price Int 
   code Int

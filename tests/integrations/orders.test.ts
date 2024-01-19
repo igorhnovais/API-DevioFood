@@ -25,3 +25,13 @@ describe('POST/ orders', () => {
         })
     })
 })
+
+describe('DELETE/ orders/:id', () => {
+    it("Should return status 404 if the order is not found.", async () => {
+    })
+
+    describe("when is valid", () => {
+        it("Should return status 200 when the order is deleted.", async () => {
+        })
+    })
+})

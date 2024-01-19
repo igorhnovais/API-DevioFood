@@ -1,9 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { unprocessableEntity } from '../errors/unprocessable-entity';
 import { newOrder } from '../models/newOrder';
-
 import { order } from '../protocols';
+import { unprocessableEntity } from '../errors';
 
 export async function insertOrderValidation(
   req: Request,

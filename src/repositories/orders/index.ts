@@ -25,6 +25,14 @@ async function findOrder(id: number) {
   });
 }
 
+async function findOrderByNameCustomer(nameCustumer: string) {
+  return prisma.orders.findFirst({
+    where: {
+      nameCustumer,
+    },
+  });
+}
+
 async function deleteOrder(id: number) {
   return prisma.orders.delete({
     where: {
@@ -33,10 +41,23 @@ async function deleteOrder(id: number) {
   });
 }
 
+async function updateOrder(nameCustumer: string) {
+  return prisma.orders.updateMany({
+    where: {
+      nameCustumer,
+    },
+    data: {
+      drop: true,
+    },
+  });
+}
+
 const orderRepositories = {
   createOrder,
   deleteOrder,
   findOrder,
+  findOrderByNameCustomer,
+  updateOrder,
 };
 
 export default orderRepositories;

@@ -17,8 +17,26 @@ async function createOrder(infosOrder: order) {
   });
 }
 
+async function findOrder(id: number) {
+  return prisma.orders.findFirst({
+    where: {
+      id,
+    },
+  });
+}
+
+async function deleteOrder(id: number) {
+  return prisma.orders.delete({
+    where: {
+      id,
+    },
+  });
+}
+
 const orderRepositories = {
   createOrder,
+  deleteOrder,
+  findOrder,
 };
 
 export default orderRepositories;

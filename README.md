@@ -189,3 +189,29 @@ $ npm run dev
             quantity: 2
         }
     ```
+2. Rota para adicionar um novo jogo:
+    
+    Route delete: ```"/orders/:id"``` 
+
+    Desrição: nela você consegue remover uma ordem
+
+    Status:
+    ```bash
+        200
+    ```
+    
+    Saída:
+    ```bash
+        {
+            id: 1,
+            productId: 2,
+            nameCustumer: "cleber",
+            observation: "sem obs",
+            transshipment: 0,
+            total: 3050,
+            drop: false,
+            description: "bla bla",
+            aditional: "bacon",
+            quantity: 2
+        }
+    ```

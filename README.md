@@ -72,8 +72,37 @@ $ npm run dev
     ```
 
 ### -> products
-
 1. Rota para pegar todos os participantes cadastrados:
+    
+    Route post: ```"/products/filter"``` 
+
+    Desrição: nela você consegue pesquisar por um produto atraves do nome ou pelo codigo
+
+    Status:
+    ```bash
+        200
+    ```
+    Entrada:
+    ```bash
+        {
+            "filter": "202031" || "hamburguer medio"
+        }
+    ```
+    
+    Saída:
+    ```bash
+        [
+            {
+                "id": 2,
+                "image": "https://img.freepik.com/fotos-gratis/hamburguer-isolado-no-fundo-branco-fastfood-de-hamburguer-fresco-com-carne-e-queijo_90220-1329.jpg",
+                "name": "hamburguer medio",
+                "price": 3250,
+                "code": 202031
+            }
+        ]
+    ```
+
+2. Rota para pegar todos os participantes cadastrados:
     
     Route get: ```"/products"``` 
 

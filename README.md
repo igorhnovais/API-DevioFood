@@ -72,7 +72,7 @@ $ npm run dev
     ```
 
 ### -> products
-1. Rota para pegar todos os participantes cadastrados:
+1. Rota para buscar por um produto especifico:
     
     Route post: ```"/products/filter"``` 
 
@@ -102,7 +102,7 @@ $ npm run dev
         ]
     ```
 
-2. Rota para pegar todos os participantes cadastrados:
+2. Rota para pegar todos os produtos da hamburgueria:
     
     Route get: ```"/products"``` 
 
@@ -149,7 +149,7 @@ $ npm run dev
 
 ### -> order
 
-1. Rota para adicionar um novo jogo:
+1. Rota para adicionar um produto a ordem:
     
     Route post: ```"/orders"``` 
 
@@ -189,7 +189,7 @@ $ npm run dev
             quantity: 2
         }
     ```
-2. Rota para adicionar um novo jogo:
+2. Rota para deletar um produto do pedido:
     
     Route delete: ```"/orders/:id"``` 
 
@@ -210,6 +210,38 @@ $ npm run dev
             transshipment: 0,
             total: 3050,
             drop: false,
+            description: "bla bla",
+            aditional: "bacon",
+            quantity: 2
+        }
+    ```
+3. Rota para atualizar o pedido:
+    
+    Route put: ```"/orders-update"``` 
+
+    Desrição: nela você consegue atualizar uma ordem para que fique com status de baixado
+
+    Status:
+    ```bash
+        200
+    ```
+    entrada:
+    ```bash
+        {
+            "nameCustumer": "cleber"
+        }
+    ```
+    
+    Saída:
+    ```bash
+        {
+            id: 1,
+            productId: 2,
+            nameCustumer: "cleber",
+            observation: "sem obs",
+            transshipment: 0,
+            total: 3050,
+            drop: true,
             description: "bla bla",
             aditional: "bacon",
             quantity: 2

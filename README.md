@@ -247,3 +247,47 @@ $ npm run dev
             quantity: 2
         }
     ```
+4. Rota para ver o resumo do pedido do cliente:
+    
+    Route get: ```"/orders"``` 
+
+    Desrição: nela você consegue atualizar uma ordem para que fique com status de baixado
+
+    Status:
+    ```bash
+        200
+    ```
+    entrada:
+    ```bash
+        {
+            "nameCustumer": "cleber"
+        }
+    ```
+    
+    Saída:
+    ```bash
+        {
+            "nameCustomer": "cleber",
+            "balance": 7100,
+            "infos": [
+                {
+                "total": 3050,
+                "observation": "sem obs",
+                "drop": true,
+                "description": "bla bla",
+                "aditional": "bacon",
+                "quantity": 2,
+                "transshipment": 0
+                },
+                {
+                "total": 4050,
+                "observation": "sem obs",
+                "drop": false,
+                "description": "bla bla",
+                "aditional": "bacon",
+                "quantity": 1,
+                "transshipment": 0
+                }
+            ]
+        }
+    ```

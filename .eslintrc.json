@@ -31,6 +31,7 @@
         "@typescript-eslint/no-shadow": ["error"],
         "@typescript-eslint/explicit-module-boundary-types": 0,
         "import/prefer-default-export": 0,
+        "no-underscore-dangle": "off",
         "global-require": 0
     },
     "ignorePatterns": ["tests/helper.ts", "tests/integrations/products.test.ts", "/tests/factories/products/index.ts", "/tests/integrations/orders.test.ts"]

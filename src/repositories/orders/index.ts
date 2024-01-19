@@ -52,12 +52,36 @@ async function updateOrder(nameCustumer: string) {
   });
 }
 
+async function resumeOrder(nameCustumer: string) {
+  const response = await prisma.orders.groupBy({
+    by: ['nameCustumer'],
+    _sum: {
+      total: true,
+    },
+    where: {
+      nameCustumer,
+    },
+  });
+
+  return response[0];
+}
+
+async function resumeInfoOrderByNameCustomer(nameCustumer: string) {
+  return prisma.orders.findMany({
+    where: {
+      nameCustumer,
+    },
+  });
+}
+
 const orderRepositories = {
   createOrder,
   deleteOrder,
   findOrder,
   findOrderByNameCustomer,
   updateOrder,
+  resumeOrder,
+  resumeInfoOrderByNameCustomer,
 };
 
 export default orderRepositories;

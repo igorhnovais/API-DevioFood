@@ -1,7 +1,7 @@
 import orderRepositories from '../../repositories/orders';
 import { order } from '../../protocols';
 
-import { badRequest, notFound } from '../../errors';
+import { badRequest, notFound, unprocessableEntity } from '../../errors';
 
 async function postProductinOrder(infosOrder: order) {
   return orderRepositories.createOrder(infosOrder);
@@ -32,10 +32,42 @@ async function updateOrder(nameCustumer: string) {
   return orderRepositories.updateOrder(nameCustumer);
 }
 
+async function resumeOrder(nameCustomer: string) {
+  let resume = {};
+  if (nameCustomer === '') {
+    throw unprocessableEntity('insira o nome do cliente');
+  }
+  const balance = await orderRepositories.resumeOrder(nameCustomer);
+
+  if (!balance) {
+    throw notFound('nenhum cliente encontrado');
+  }
+
+  const info =
+    await orderRepositories.resumeInfoOrderByNameCustomer(nameCustomer);
+
+  resume = {
+    nameCustomer: balance.nameCustumer,
+    balance: balance._sum.total,
+    infos: info.map(r => ({
+      total: r.total,
+      observation: r.observation,
+      drop: r.drop,
+      description: r.description,
+      aditional: r.aditional,
+      quantity: r.quantity,
+      transshipment: r.transshipment,
+    })),
+  };
+
+  return resume;
+}
+
 const orderServices = {
   postProductinOrder,
   deleteProductOrder,
   updateOrder,
+  resumeOrder,
 };
 
 export default orderServices;

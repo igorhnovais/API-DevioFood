@@ -35,3 +35,16 @@ describe('DELETE/ orders/:id', () => {
         })
     })
 })
+
+describe('PUT/ orders-update', () => {
+    it("Should return status 404 if the order is not found.", async () => {
+    })
+
+    it("Should return status 400 if the order has already been fulfilled.", async () => {
+    })
+
+    describe("when is valid", () => {
+        it("Should return status 200 if the order is successfully fulfilled", async () => {
+        })
+    })
+})

@@ -117,3 +117,46 @@ $ npm run dev
             }
         ]
     ```
+
+### -> order
+
+1. Rota para adicionar um novo jogo:
+    
+    Route post: ```"/orders"``` 
+
+    Desrição: nela você consegue adicionar uma nova ordem 
+
+    Status:
+    ```bash
+        201
+    ```
+    Entrada:
+    ```bash
+        {
+            productId: 2,
+            nameCustumer: "cleber",
+            observation: "sem obs",
+            transshipment: 0,
+            total: 3050,
+            drop: false,
+            description: "bla bla",
+            aditional: "bacon",
+            quantity: 2
+        }
+    ```
+    
+    Saída:
+    ```bash
+        {
+            id: 2,
+            productId: 2,
+            nameCustumer: "cleber",
+            observation: "sem obs",
+            transshipment: 0,
+            total: 3050,
+            drop: false,
+            description: "bla bla",
+            aditional: "bacon",
+            quantity: 2
+        }
+    ```

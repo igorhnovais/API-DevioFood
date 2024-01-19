@@ -16,7 +16,17 @@ beforeEach(async() => {
 
 const server= supertest(app);
 
-describe('Get/ products', () => {
+describe('POST/ products/filter', () => {
+    it("Should return status 404 if no product is found with the given code.")
+
+    it("Should return status 404 if no product is found with the given name.")
+
+    describe("when is valid", () => {
+        it("Should return status 200 if the product is found.")
+    })
+})
+
+describe('GET/ products', () => {
     it("Should return status 404 if no game is found.", async () => {
         const response = await server.get("/games");
 

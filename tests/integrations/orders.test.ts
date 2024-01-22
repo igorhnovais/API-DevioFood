@@ -26,6 +26,16 @@ describe('POST/ orders', () => {
     })
 })
 
+describe('POST/ orders/finish', () => {
+    it("Should return status 404 if any information is missing in the order.", async () => {
+    })
+
+    describe("when is valid", () => {
+        it("Should return status 201 if order is finished.", async () => {
+        })
+    })
+})
+
 describe('GET/ orders', () => {
     it("Should return status 404 if no customer is found.", async () => {
     })

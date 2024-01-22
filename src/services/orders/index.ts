@@ -1,10 +1,21 @@
 import orderRepositories from '../../repositories/orders';
+import finishRepositories from '../../repositories/finishes';
 import { order } from '../../protocols';
 
 import { badRequest, notFound, unprocessableEntity } from '../../errors';
 
 async function postProductinOrder(infosOrder: order) {
   return orderRepositories.createOrder(infosOrder);
+}
+
+async function postFinishedOrder(name: string) {
+  const orderExists = await orderRepositories.findOrderByNameCustomer(name);
+
+  if (!orderExists) {
+    throw notFound('Escolha algo primeiro');
+  }
+
+  return finishRepositories.finishOrder(name);
 }
 
 async function deleteProductOrder(id: number) {
@@ -65,6 +76,7 @@ async function resumeOrder(nameCustomer: string) {
 
 const orderServices = {
   postProductinOrder,
+  postFinishedOrder,
   deleteProductOrder,
   updateOrder,
   resumeOrder,

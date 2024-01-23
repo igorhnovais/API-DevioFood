@@ -19,9 +19,31 @@ async function getFinishNames() {
   });
 }
 
+async function getReadyNames() {
+  return prisma.finishes.findMany({
+    where: {
+      isFinish: true,
+      isREady: true,
+    },
+  });
+}
+
+async function updateFinish(id: number) {
+  return prisma.finishes.update({
+    where: {
+      id,
+    },
+    data: {
+      isREady: true,
+    },
+  });
+}
+
 const finishRepositories = {
   finishOrder,
   getFinishNames,
+  getReadyNames,
+  updateFinish,
 };
 
 export default finishRepositories;

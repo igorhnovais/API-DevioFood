@@ -33,6 +33,14 @@ async function findOrderByNameCustomer(nameCustumer: string) {
   });
 }
 
+async function findOrderById(id: number) {
+  return prisma.orders.findFirst({
+    where: {
+      id,
+    },
+  });
+}
+
 async function deleteOrder(id: number) {
   return prisma.orders.delete({
     where: {
@@ -79,6 +87,7 @@ const orderRepositories = {
   deleteOrder,
   findOrder,
   findOrderByNameCustomer,
+  findOrderById,
   updateOrder,
   resumeOrder,
   resumeInfoOrderByNameCustomer,

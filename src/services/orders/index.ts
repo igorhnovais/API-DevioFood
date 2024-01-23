@@ -19,11 +19,58 @@ async function postFinishedOrder(name: string) {
   return finishRepositories.finishOrder(name);
 }
 
+async function updateReadyOrder(id: number) {
+  const orderExists = await orderRepositories.findOrderById(id);
+
+  if (!orderExists) {
+    throw notFound('Ordem não encontrada!');
+  }
+
+  return finishRepositories.updateFinish(id);
+}
+
 async function getPreparingOrders() {
   const names = await finishRepositories.getFinishNames();
 
   if (names.length === 0) {
     throw notFound('nenhum pedido finalizado ainda!');
+  }
+
+  const resume = await Promise.all(
+    names.map(async name => {
+      const infos = await orderRepositories.resumeInfoOrderByNameCustomer(
+        name.nameCustomer,
+      );
+
+      const infosWithImages = await Promise.all(
+        infos.map(async r => ({
+          product: await productsServices.getImageByProductId(r.productId),
+          total: r.total,
+          observation: r.observation,
+          drop: r.drop,
+          description: r.description,
+          aditional: r.aditional,
+          quantity: r.quantity,
+          transshipment: r.transshipment,
+        })),
+      );
+
+      return {
+        id: name.id,
+        nameCustomer: name.nameCustomer,
+        infos: infosWithImages,
+      };
+    }),
+  );
+
+  return resume;
+}
+
+async function getReadyOrders() {
+  const names = await finishRepositories.getReadyNames();
+
+  if (names.length === 0) {
+    throw notFound('nenhum pedido pronto ainda!');
   }
 
   const resume = await Promise.all(
@@ -115,9 +162,11 @@ async function resumeOrder(nameCustomer: string) {
 const orderServices = {
   postProductinOrder,
   postFinishedOrder,
+  getReadyOrders,
   getPreparingOrders,
   deleteProductOrder,
   updateOrder,
+  updateReadyOrder,
   resumeOrder,
 };
 

@@ -15,9 +15,14 @@ async function getOneProduct(filter: string) {
   return response;
 }
 
+async function getImageByProductId(id: number) {
+  return productsRepositories.getOneProductById(id);
+}
+
 const productsServices = {
   getAllProducts,
   getOneProduct,
+  getImageByProductId,
 };
 
 export default productsServices;

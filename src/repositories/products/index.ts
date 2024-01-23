@@ -28,9 +28,18 @@ async function getOneProduct(filter: string) {
   });
 }
 
+async function getOneProductById(id: number) {
+  return prisma.products.findFirst({
+    where: {
+      id,
+    },
+  });
+}
+
 const productsRepositories = {
   getAllProducts,
   getOneProduct,
+  getOneProductById,
 };
 
 export default productsRepositories;

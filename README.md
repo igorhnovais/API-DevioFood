@@ -333,11 +333,18 @@ $ npm run dev
     Saída:
     ```bash
         [
-        {
-            "id": 1,
-            "nameCustomer": "cleber",
-            "infos": [
+            {
+                "id": 1,
+                "nameCustomer": "cleber",
+                "infos": [
                 {
+                    "product": {
+                    "id": 2,
+                    "image": "https://img.freepik.com/fotos-gratis/hamburguer-isolado-no-fundo-branco-fastfood-de-hamburguer-fresco-com-carne-e-queijo_90220-1329.jpg",
+                    "name": "hamburguer medio",
+                    "price": 3250,
+                    "code": 202031
+                    },
                     "total": 3050,
                     "observation": "sem obs",
                     "drop": true,
@@ -347,6 +354,13 @@ $ npm run dev
                     "transshipment": 0
                 },
                 {
+                    "product": {
+                    "id": 3,
+                    "image": "https://img.freepik.com/fotos-gratis/hamburguer-isolado-no-fundo-branco-fastfood-de-hamburguer-fresco-com-carne-e-queijo_90220-1329.jpg",
+                    "name": "hamburguer grande",
+                    "price": 3450,
+                    "code": 202088
+                    },
                     "total": 4050,
                     "observation": "sem obs",
                     "drop": false,
@@ -355,13 +369,20 @@ $ npm run dev
                     "quantity": 1,
                     "transshipment": 0
                 }
-            ]
-        },
-        {
-            "id": 2,
-            "nameCustomer": "igor",
-            "infos": [
+                ]
+            },
+            {
+                "id": 2,
+                "nameCustomer": "igor",
+                "infos": [
                 {
+                    "product": {
+                    "id": 3,
+                    "image": "https://img.freepik.com/fotos-gratis/hamburguer-isolado-no-fundo-branco-fastfood-de-hamburguer-fresco-com-carne-e-queijo_90220-1329.jpg",
+                    "name": "hamburguer grande",
+                    "price": 3450,
+                    "code": 202088
+                    },
                     "total": 4050,
                     "observation": "sem obs",
                     "drop": false,
@@ -370,7 +391,7 @@ $ npm run dev
                     "quantity": 1,
                     "transshipment": 0
                 }
-            ]
-        }
+                ]
+            }
     ]
     ```

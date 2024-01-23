@@ -3,6 +3,7 @@ import finishRepositories from '../../repositories/finishes';
 import { order } from '../../protocols';
 
 import { badRequest, notFound, unprocessableEntity } from '../../errors';
+import productsServices from '../products';
 
 async function postProductinOrder(infosOrder: order) {
   return orderRepositories.createOrder(infosOrder);
@@ -30,10 +31,10 @@ async function getPreparingOrders() {
       const infos = await orderRepositories.resumeInfoOrderByNameCustomer(
         name.nameCustomer,
       );
-      return {
-        id: name.id,
-        nameCustomer: name.nameCustomer,
-        infos: infos.map(r => ({
+
+      const infosWithImages = await Promise.all(
+        infos.map(async r => ({
+          product: await productsServices.getImageByProductId(r.productId),
           total: r.total,
           observation: r.observation,
           drop: r.drop,
@@ -42,6 +43,12 @@ async function getPreparingOrders() {
           quantity: r.quantity,
           transshipment: r.transshipment,
         })),
+      );
+
+      return {
+        id: name.id,
+        nameCustomer: name.nameCustomer,
+        infos: infosWithImages,
       };
     }),
   );

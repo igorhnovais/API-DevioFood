@@ -20,27 +20,19 @@ async function postFinishedOrder(name: string) {
 }
 
 async function updateReadyOrder(id: number) {
-  const orderExists = await orderRepositories.findOrderById(id);
-
-  if (!orderExists) {
-    throw notFound('Ordem não encontrada!');
-  }
-
   return finishRepositories.updateFinish(id);
 }
 
 async function getPreparingOrders() {
   const names = await finishRepositories.getFinishNames();
 
-  if (names.length === 0) {
-    throw notFound('nenhum pedido finalizado ainda!');
-  }
-
   const resume = await Promise.all(
     names.map(async name => {
       const infos = await orderRepositories.resumeInfoOrderByNameCustomer(
         name.nameCustomer,
       );
+
+      const finish = await finishRepositories.getIdByname(name.nameCustomer);
 
       const infosWithImages = await Promise.all(
         infos.map(async r => ({
@@ -58,6 +50,7 @@ async function getPreparingOrders() {
       return {
         id: name.id,
         nameCustomer: name.nameCustomer,
+        finishId: finish.id,
         infos: infosWithImages,
       };
     }),
@@ -79,6 +72,8 @@ async function getReadyOrders() {
         name.nameCustomer,
       );
 
+      const finish = await finishRepositories.getIdByname(name.nameCustomer);
+
       const infosWithImages = await Promise.all(
         infos.map(async r => ({
           product: await productsServices.getImageByProductId(r.productId),
@@ -95,6 +90,7 @@ async function getReadyOrders() {
       return {
         id: name.id,
         nameCustomer: name.nameCustomer,
+        finishId: finish.id,
         infos: infosWithImages,
       };
     }),

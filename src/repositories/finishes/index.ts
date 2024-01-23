@@ -39,11 +39,20 @@ async function updateFinish(id: number) {
   });
 }
 
+async function getIdByname(nameCustomer: string) {
+  return prisma.finishes.findFirst({
+    where: {
+      nameCustomer,
+    },
+  });
+}
+
 const finishRepositories = {
   finishOrder,
   getFinishNames,
   getReadyNames,
   updateFinish,
+  getIdByname,
 };
 
 export default finishRepositories;

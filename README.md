@@ -275,6 +275,34 @@ $ npm run dev
             quantity: 2
         }
     ```
+
+4. Rota para atualizar o pedido para pronto:
+    
+    Route put: ```"/orders-update-ready"``` 
+
+    Desrição: nela você consegue atualizar uma ordem para que fique com status de pronto
+
+    Status:
+    ```bash
+        200
+    ```
+    entrada:
+    ```bash
+        {
+            "id": 2
+        }
+    ```
+    
+    Saída:
+    ```bash
+        {
+            "id": 2,
+            "nameCustomer": "igor",
+            "isFinish": true,
+            "isREady": true
+        }
+    ```
+
 5. Rota para ver o resumo do pedido do cliente:
     
     Route get: ```"/orders"``` 
@@ -336,6 +364,7 @@ $ npm run dev
             {
                 "id": 1,
                 "nameCustomer": "cleber",
+                "finishId": 1
                 "infos": [
                 {
                     "product": {

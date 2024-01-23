@@ -18,6 +18,37 @@ async function postFinishedOrder(name: string) {
   return finishRepositories.finishOrder(name);
 }
 
+async function getPreparingOrders() {
+  const names = await finishRepositories.getFinishNames();
+
+  if (names.length === 0) {
+    throw notFound('nenhum pedido finalizado ainda!');
+  }
+
+  const resume = await Promise.all(
+    names.map(async name => {
+      const infos = await orderRepositories.resumeInfoOrderByNameCustomer(
+        name.nameCustomer,
+      );
+      return {
+        id: name.id,
+        nameCustomer: name.nameCustomer,
+        infos: infos.map(r => ({
+          total: r.total,
+          observation: r.observation,
+          drop: r.drop,
+          description: r.description,
+          aditional: r.aditional,
+          quantity: r.quantity,
+          transshipment: r.transshipment,
+        })),
+      };
+    }),
+  );
+
+  return resume;
+}
+
 async function deleteProductOrder(id: number) {
   const product = await orderRepositories.findOrder(id);
 
@@ -77,6 +108,7 @@ async function resumeOrder(nameCustomer: string) {
 const orderServices = {
   postProductinOrder,
   postFinishedOrder,
+  getPreparingOrders,
   deleteProductOrder,
   updateOrder,
   resumeOrder,

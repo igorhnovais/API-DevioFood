@@ -189,7 +189,35 @@ $ npm run dev
             quantity: 2
         }
     ```
-2. Rota para deletar um produto do pedido:
+
+2. Rota para adicionar um produto a ordem:
+    
+    Route post: ```"/orders/finish"``` 
+
+    Desrição: nela você consegue adicionar uma nova ordem 
+
+    Status:
+    ```bash
+        201
+    ```
+    Entrada:
+    ```bash
+        {
+            "name": "igor"
+        }
+    ```
+    
+    Saída:
+    ```bash
+        {
+            "id": 2,
+            "nameCustomer": "igor",
+            "isFinish": true,
+            "isREady": false
+        }
+    ```
+
+3. Rota para deletar um produto do pedido:
     
     Route delete: ```"/orders/:id"``` 
 
@@ -215,7 +243,7 @@ $ npm run dev
             quantity: 2
         }
     ```
-3. Rota para atualizar o pedido:
+4. Rota para atualizar o pedido:
     
     Route put: ```"/orders-update"``` 
 
@@ -247,7 +275,7 @@ $ npm run dev
             quantity: 2
         }
     ```
-4. Rota para ver o resumo do pedido do cliente:
+5. Rota para ver o resumo do pedido do cliente:
     
     Route get: ```"/orders"``` 
 
@@ -290,4 +318,59 @@ $ npm run dev
                 }
             ]
         }
+    ```
+6. Rota para ver o resumo do pedido do cliente:
+    
+    Route get: ```"/orders/finish"``` 
+
+    Desrição: nela você consegue atualizar uma ordem para que fique com status de baixado
+
+    Status:
+    ```bash
+        200
+    ```
+
+    Saída:
+    ```bash
+        [
+        {
+            "id": 1,
+            "nameCustomer": "cleber",
+            "infos": [
+                {
+                    "total": 3050,
+                    "observation": "sem obs",
+                    "drop": true,
+                    "description": "bla bla",
+                    "aditional": "bacon",
+                    "quantity": 2,
+                    "transshipment": 0
+                },
+                {
+                    "total": 4050,
+                    "observation": "sem obs",
+                    "drop": false,
+                    "description": "bla bla",
+                    "aditional": "bacon",
+                    "quantity": 1,
+                    "transshipment": 0
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "nameCustomer": "igor",
+            "infos": [
+                {
+                    "total": 4050,
+                    "observation": "sem obs",
+                    "drop": false,
+                    "description": "bla bla",
+                    "aditional": "bacon",
+                    "quantity": 1,
+                    "transshipment": 0
+                }
+            ]
+        }
+    ]
     ```

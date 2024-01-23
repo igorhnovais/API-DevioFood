@@ -49,6 +49,16 @@ describe('GET/ orders', () => {
     })
 })
 
+describe('GET/ orders/finish', () => {
+    it("Should return status 404 if no customer is found.", async () => {
+    })
+
+    describe("when is valid", () => {
+        it("Should return status 200 with all the order finished information.", async () => {
+        })
+    })
+})
+
 describe('DELETE/ orders/:id', () => {
     it("Should return status 404 if the order is not found.", async () => {
     })

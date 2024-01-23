@@ -10,8 +10,18 @@ async function finishOrder(name: string) {
   });
 }
 
+async function getFinishNames() {
+  return prisma.finishes.findMany({
+    where: {
+      isFinish: true,
+      isREady: false,
+    },
+  });
+}
+
 const finishRepositories = {
   finishOrder,
+  getFinishNames,
 };
 
 export default finishRepositories;

@@ -4,7 +4,7 @@ import httpStatus from 'http-status';
 import orderServices from '../../services/orders';
 
 export async function postFinishedOrder(req: Request, res: Response) {
-  const { name } = req.body;
+  const { name } = req.params;
   try {
     const response = await orderServices.postFinishedOrder(name);
     res.status(httpStatus.CREATED).send(response);

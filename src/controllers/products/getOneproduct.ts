@@ -4,7 +4,7 @@ import httpStatus from 'http-status';
 import productsServices from '../../services/products';
 
 export async function getOneProduct(req: Request, res: Response) {
-  const { filter } = req.body;
+  const { filter } = req.params;
   try {
     const response = await productsServices.getOneProduct(filter);
     res.status(httpStatus.OK).send(response);

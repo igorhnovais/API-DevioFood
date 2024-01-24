@@ -13,10 +13,10 @@ import { getOrderReady } from '../controllers/orders/getOrderReady';
 const router = Router();
 
 router.post('/orders', insertOrderValidation, postProductinOrder);
-router.post('/orders/finish', postFinishedOrder);
-router.get('/orders', getResumeOrder);
-router.get('/orders/finish', getFinishedOrder);
-router.get('/orders/ready', getOrderReady);
+router.post('/orders/finish/:name', postFinishedOrder);
+router.get('/orders/:nameCustomer', getResumeOrder);
+router.get('/orders-finish', getFinishedOrder);
+router.get('/orders-ready', getOrderReady);
 router.delete('/orders/:id', deleteProductOrder);
 router.put('/orders-update', updateOrder);
 router.put('/orders-update-ready', updateStatusOrder);

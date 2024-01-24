@@ -5,7 +5,7 @@ import { getOneProduct } from '../controllers/products/getOneproduct';
 
 const router = Router();
 
-router.post('/products/filter', getOneProduct);
+router.post('/products/:filter', getOneProduct);
 router.get('/products', getAllProducts);
 
 export default router;

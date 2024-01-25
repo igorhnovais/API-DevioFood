@@ -9,7 +9,7 @@
     "scripts": {
         "build": "npx tsc",
         "migration:run": "prisma migrate deploy",
-        "start": " prisma migrate deploy && prisma db seed && node dist/server.js",
+        "start": " prisma migrate deploy && npx prisma db seed && node dist/server.js",
         "dev": "nodemon src/server.ts",
         "test": "npm run test:load-envs jest  -- --passWithNoTests --runInBand",
         "test:coverage": "jest --coverage",

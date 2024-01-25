@@ -13,3 +13,6 @@ export async function cleanDbOrders() {
 export async function cleanDbProducts() {
   await prisma.products.deleteMany({});
 }
+export async function cleanDbFinish() {
+  await prisma.finishes.deleteMany({});
+}

@@ -34,5 +34,5 @@
         "no-underscore-dangle": "off",
         "global-require": 0
     },
-    "ignorePatterns": ["tests/helper.ts", "tests/integrations/products.test.ts", "/tests/factories/products/index.ts", "/tests/integrations/orders.test.ts"]
+    "ignorePatterns": ["tests/helper.ts", "tests/integrations/products.test.ts", "/tests/factories/products/index.ts", "/tests/integrations/orders.test.ts", "/tests/factories/orders/index.ts", "/tests/factories/finishes/index.ts"]
 }

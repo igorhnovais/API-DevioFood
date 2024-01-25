@@ -16,13 +16,25 @@ beforeEach(async() => {
 
 const server= supertest(app);
 
-describe('POST/ products/filter', () => {
-    it("Should return status 404 if no product is found with the given code.")
+describe('POST/ products/:filter', () => {
+    it("Should return status 404 if no product is found with the given code.", async () => {
+        await productsFactories.createProducts();
+        const response = await server.post(`/products/303030`)
+        expect(response.status).toEqual(httpStatus.NOT_FOUND);
+    })
 
-    it("Should return status 404 if no product is found with the given name.")
+    it("Should return status 404 if no product is found with the given name.", async () => {
+        await productsFactories.createProducts();
+        const response = await server.post(`/products/batata`)
+        expect(response.status).toEqual(httpStatus.NOT_FOUND);
+    })
 
     describe("when is valid", () => {
-        it("Should return status 200 if the product is found.")
+        it("Should return status 200 if the product is found.", async () => {
+            await productsFactories.createProducts();
+            const response = await server.post(`/products/hamburguer`)
+            expect(response.status).toEqual(httpStatus.OK);
+        })
     })
 })
 

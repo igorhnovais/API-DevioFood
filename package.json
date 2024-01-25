@@ -22,6 +22,9 @@
         "dev:migration:generate": "npm run dev:load-envs prisma migrate dev",
         "test:report": "dotenv -e .env.test prisma migrate deploy & dotenv -e .env.test jest -- --coverage --runInBand --coverageReporters=json-summary --coverageDirectory=coverage --collectCoverageFrom='**/*.ts'"
     },
+    "prisma": {
+        "seed": "ts-node prisma/seed.ts"
+    },
     "keywords": [],
     "author": "",
     "license": "ISC",
